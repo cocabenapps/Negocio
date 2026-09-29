@@ -3,23 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi Tienda | Catálogo Online</title>
+<title>Richardo Brito | Catálogo Online</title>
 <style>
   :root {
-    --primary: #6d28d9;
-    --primary-dark: #5b21b6;
-    --accent: #22c55e;
-    --bg: #f8fafc;
-    --card: #ffffff;
-    --text: #1e293b;
-    --muted: #64748b;
-    --border: #e2e8f0;
+    --gold: #d4af37;
+    --gold-light: #f4d76b;
+    --gold-dark: #a8842c;
+    --black: #0a0a0a;
+    --black-soft: #141414;
+    --black-card: #1a1a1a;
+    --black-border: #2a2a2a;
+    --text: #f5f5f5;
+    --text-muted: #a0a0a0;
+    --green: #22c55e;
+    --red: #ef4444;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); }
+  body { background: var(--black); color: var(--text); }
 
-  /* SVG helpers */
   .icon { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
   .icon-sm { width: 16px; height: 16px; }
   .icon-lg { width: 24px; height: 24px; }
@@ -27,42 +29,44 @@
   /* HEADER */
   header {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
-    padding: 14px 20px;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gold-dark);
+    padding: 12px 20px;
     display: flex; align-items: center; justify-content: space-between;
     gap: 15px;
   }
-  .logo { font-size: 1.3rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
-  .logo span { color: var(--accent); }
+  .header-logo img { height: 52px; width: auto; display: block; }
 
-  nav { display: flex; gap: 20px; align-items: center; }
+  nav { display: flex; gap: 22px; align-items: center; }
   nav a {
-    color: var(--muted); text-decoration: none; font-weight: 600;
-    font-size: 0.9rem; transition: 0.2s;
+    color: var(--text-muted); text-decoration: none; font-weight: 600;
+    font-size: 0.85rem; transition: 0.2s; letter-spacing: 0.5px;
+    text-transform: uppercase;
   }
-  nav a:hover { color: var(--primary); }
+  nav a:hover { color: var(--gold); }
 
   .search-bar {
-    flex: 1; max-width: 380px;
+    flex: 1; max-width: 320px;
     display: flex; align-items: center; gap: 8px;
-    background: var(--bg); border: 1px solid var(--border);
+    background: var(--black-card); border: 1px solid var(--black-border);
     border-radius: 50px; padding: 8px 16px;
-    color: var(--muted);
+    color: var(--text-muted);
   }
+  .search-bar:focus-within { border-color: var(--gold); }
   .search-bar input { border: none; background: none; outline: none; flex: 1; font-size: 0.9rem; color: var(--text); }
+  .search-bar input::placeholder { color: var(--text-muted); }
 
   .cart-btn {
-    position: relative; background: var(--primary); color: white;
-    border: none; padding: 10px 18px; border-radius: 50px;
-    font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px;
-    transition: 0.2s;
+    position: relative; background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--black); border: none; padding: 10px 18px; border-radius: 50px;
+    font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px;
+    transition: 0.2s; font-size: 0.85rem;
   }
-  .cart-btn:hover { background: var(--primary-dark); transform: translateY(-1px); }
+  .cart-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(212,175,55,0.4); }
   .cart-count {
     position: absolute; top: -6px; right: -6px;
-    background: var(--accent); color: white;
+    background: var(--red); color: white;
     font-size: 0.7rem; font-weight: 700;
     min-width: 20px; height: 20px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
@@ -71,65 +75,94 @@
 
   /* HERO */
   .hero {
-    background: linear-gradient(135deg, #6d28d9, #a855f7);
+    background:
+      radial-gradient(circle at 50% 20%, rgba(212,175,55,0.15), transparent 60%),
+      linear-gradient(180deg, #0a0a0a, #141414);
     color: white; text-align: center;
-    padding: 60px 20px;
+    padding: 70px 20px 50px;
+    border-bottom: 1px solid var(--black-border);
   }
-  .hero h1 { font-size: 2.2rem; margin-bottom: 10px; }
-  .hero p { opacity: 0.9; font-size: 1.05rem; }
+  .hero h1 {
+    font-size: 2.4rem; margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 1px;
+  }
+  .hero p { color: var(--text-muted); font-size: 1.05rem; letter-spacing: 0.5px; }
+
+  /* SELECTOR MAYORISTA / MINORISTA */
+  .mode-switcher {
+    display: flex; justify-content: center; margin-top: 28px;
+  }
+  .mode-toggle {
+    display: inline-flex;
+    background: var(--black-card);
+    border: 1px solid var(--gold-dark);
+    border-radius: 50px;
+    padding: 5px;
+    gap: 4px;
+  }
+  .mode-btn {
+    background: none; border: none;
+    padding: 10px 28px; border-radius: 50px;
+    color: var(--text-muted); font-weight: 700; font-size: 0.85rem;
+    cursor: pointer; transition: 0.25s;
+    text-transform: uppercase; letter-spacing: 1px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .mode-btn:hover { color: var(--gold); }
+  .mode-btn.active {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--black);
+  }
 
   /* INFO BANNER */
   .info-banner {
-    background: white; border-bottom: 1px solid var(--border);
+    background: var(--black-soft); border-bottom: 1px solid var(--black-border);
     display: flex; justify-content: center; gap: 40px;
     padding: 15px 20px; flex-wrap: wrap;
-    font-size: 0.9rem;
-    align-items: center;
+    font-size: 0.9rem; align-items: center;
   }
-  .info-banner > div { display: flex; align-items: center; gap: 8px; color: var(--muted); }
-  .info-banner strong { color: var(--text); }
+  .info-banner > div { display: flex; align-items: center; gap: 8px; color: var(--text-muted); }
+  .info-banner strong { color: var(--gold); }
 
   #statusBadge {
-    padding: 6px 14px;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    padding: 6px 14px; border-radius: 50px;
+    font-weight: 700; font-size: 0.85rem;
+    display: flex; align-items: center; gap: 8px;
     transition: 0.3s;
   }
-  #statusBadge.abierto { background: #dcfce7; color: #15803d; }
-  #statusBadge.cerrado { background: #fee2e2; color: #b91c1c; }
+  #statusBadge.abierto { background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.4); }
+  #statusBadge.cerrado { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.4); }
 
-  .dot {
-    width: 10px; height: 10px; border-radius: 50%;
-    background: currentColor;
-    box-shadow: 0 0 0 0 currentColor;
-    animation: pulse 2s infinite;
-  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; animation: pulse 2s infinite; }
   @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(21,128,61,0.5); }
-    70% { box-shadow: 0 0 0 8px rgba(21,128,61,0); }
-    100% { box-shadow: 0 0 0 0 rgba(21,128,61,0); }
+    0% { box-shadow: 0 0 0 0 currentColor; }
+    70% { box-shadow: 0 0 0 8px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
   }
   #statusBadge.cerrado .dot { animation: none; }
 
   /* CATEGORÍAS */
   .categories {
     display: flex; gap: 10px; overflow-x: auto;
-    padding: 20px; max-width: 1200px; margin: 0 auto;
+    padding: 22px; max-width: 1200px; margin: 0 auto;
     scrollbar-width: none;
   }
   .categories::-webkit-scrollbar { display: none; }
   .cat-chip {
-    background: var(--card); border: 1px solid var(--border);
-    padding: 10px 20px; border-radius: 50px; white-space: nowrap;
-    cursor: pointer; font-weight: 600; font-size: 0.9rem;
-    transition: 0.2s; color: var(--muted);
+    background: var(--black-card); border: 1px solid var(--black-border);
+    padding: 10px 22px; border-radius: 50px; white-space: nowrap;
+    cursor: pointer; font-weight: 600; font-size: 0.85rem;
+    transition: 0.2s; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.5px;
   }
-  .cat-chip:hover { border-color: var(--primary); color: var(--primary); }
-  .cat-chip.active { background: var(--primary); color: white; border-color: var(--primary); }
+  .cat-chip:hover { border-color: var(--gold); color: var(--gold); }
+  .cat-chip.active {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--black); border-color: var(--gold);
+  }
 
   /* GRID PRODUCTOS */
   .container { max-width: 1200px; margin: 0 auto; padding: 0 20px 60px; }
@@ -139,167 +172,213 @@
     gap: 18px;
   }
   .card {
-    background: var(--card); border-radius: 16px; overflow: hidden;
-    border: 1px solid var(--border);
-    transition: 0.25s; display: flex; flex-direction: column;
+    background: var(--black-card); border-radius: 14px; overflow: hidden;
+    border: 1px solid var(--black-border);
+    transition: 0.3s; display: flex; flex-direction: column;
   }
-  .card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(109,40,217,0.12); }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 12px 30px rgba(212,175,55,0.15);
+  }
   .card img { width: 100%; height: 180px; object-fit: cover; }
   .card-body { padding: 14px; display: flex; flex-direction: column; flex: 1; }
-  .card-cat { font-size: 0.7rem; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-  .card-title { font-size: 1rem; font-weight: 600; margin: 6px 0; }
-  .card-price { font-size: 1.1rem; font-weight: 800; color: var(--text); margin-top: auto; }
+  .card-cat {
+    font-size: 0.7rem; color: var(--gold); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .card-title { font-size: 1rem; font-weight: 600; margin: 6px 0; color: var(--text); }
+  .card-price {
+    font-size: 1.15rem; font-weight: 800;
+    color: var(--gold-light); margin-top: auto;
+  }
   .add-btn {
-    margin-top: 10px; background: var(--primary); color: white;
-    border: none; padding: 10px; border-radius: 10px;
-    font-weight: 600; cursor: pointer; transition: 0.2s;
+    margin-top: 10px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--black); border: none; padding: 10px;
+    border-radius: 10px; font-weight: 700; cursor: pointer;
+    transition: 0.2s; font-size: 0.85rem;
     display: flex; align-items: center; justify-content: center; gap: 8px;
   }
-  .add-btn:hover { background: var(--primary-dark); }
-  .add-btn.added { background: var(--accent); }
+  .add-btn:hover { box-shadow: 0 6px 18px rgba(212,175,55,0.4); }
+  .add-btn.added { background: linear-gradient(135deg, var(--green), #16a34a); color: white; }
 
-  /* SECCIÓN INFO / CONTACTO */
+  /* SECCIONES */
   .section { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
-  .section h2 { font-size: 1.8rem; margin-bottom: 12px; text-align: center; }
-  .section h2 span { color: var(--primary); }
+  .section h2 {
+    font-size: 1.9rem; margin-bottom: 12px; text-align: center;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; letter-spacing: 1px;
+  }
   .section-intro {
-    text-align: center; color: var(--muted); max-width: 700px;
+    text-align: center; color: var(--text-muted); max-width: 700px;
     margin: 0 auto 40px; line-height: 1.6;
   }
 
   /* SOBRE NOSOTROS */
   .about { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-  .about-text p { color: var(--muted); line-height: 1.7; margin-bottom: 15px; }
+  .about-text p { color: var(--text-muted); line-height: 1.7; margin-bottom: 15px; }
+  .about-text strong { color: var(--gold); }
   .about-text ul { list-style: none; margin-top: 20px; }
   .about-text li {
     padding: 8px 0; color: var(--text); font-weight: 500;
     display: flex; align-items: center; gap: 10px;
   }
   .about-text li .check {
-    color: var(--accent);
-    background: #dcfce7; width: 24px; height: 24px; border-radius: 50%;
+    color: var(--gold);
+    background: rgba(212,175,55,0.1);
+    border: 1px solid var(--gold-dark);
+    width: 24px; height: 24px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .about-img {
-    background: linear-gradient(135deg, #6d28d9, #a855f7);
-    border-radius: 20px; height: 300px;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(212,175,55,0.15), transparent 70%),
+      var(--black-card);
+    border: 1px solid var(--gold-dark);
+    border-radius: 20px; height: 320px;
     display: flex; align-items: center; justify-content: center;
-    color: white;
+    padding: 30px;
   }
-  .about-img svg { width: 120px; height: 120px; stroke-width: 1.5; }
+  .about-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
   /* CONTACTO */
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
   .contact-cards { display: flex; flex-direction: column; gap: 15px; }
   .contact-card {
-    background: white; border: 1px solid var(--border);
+    background: var(--black-card); border: 1px solid var(--black-border);
     border-radius: 16px; padding: 20px;
     display: flex; align-items: center; gap: 16px;
     text-decoration: none; color: var(--text);
-    transition: 0.2s;
+    transition: 0.25s;
   }
-  .contact-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(109,40,217,0.1); border-color: var(--primary); }
+  .contact-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--gold);
+    box-shadow: 0 10px 25px rgba(212,175,55,0.15);
+  }
   .contact-icon {
     width: 50px; height: 50px; border-radius: 12px;
-    background: #ede9fe; display: flex; align-items: center; justify-content: center;
-    color: var(--primary); flex-shrink: 0;
+    background: rgba(212,175,55,0.1);
+    border: 1px solid var(--gold-dark);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); flex-shrink: 0;
   }
   .contact-icon svg { width: 24px; height: 24px; }
-  .contact-card.wa .contact-icon { background: #dcfce7; color: #16a34a; }
-  .contact-card h4 { font-size: 0.85rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-  .contact-card p { font-size: 1rem; font-weight: 600; margin-top: 2px; }
-  .contact-card small { font-size: 0.8rem; color: var(--muted); font-weight: 400; }
+  .contact-card.wa .contact-icon { color: #4ade80; border-color: rgba(34,197,94,0.4); background: rgba(34,197,94,0.1); }
+  .contact-card h4 {
+    font-size: 0.75rem; color: var(--text-muted); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .contact-card p { font-size: 1rem; font-weight: 600; margin-top: 2px; color: var(--gold-light); }
+  .contact-card small { font-size: 0.8rem; color: var(--text-muted); font-weight: 400; }
 
   .map-wrapper {
     border-radius: 16px; overflow: hidden;
-    border: 1px solid var(--border); height: 100%;
+    border: 1px solid var(--gold-dark); height: 100%;
     min-height: 320px;
+    filter: grayscale(30%) invert(92%) hue-rotate(180deg);
   }
   .map-wrapper iframe { width: 100%; height: 100%; border: 0; display: block; }
 
   /* FOOTER */
   footer {
-    background: #1e293b; color: #cbd5e1;
+    background: var(--black-soft);
+    border-top: 1px solid var(--gold-dark);
+    color: var(--text-muted);
     text-align: center; padding: 30px 20px;
     font-size: 0.85rem;
   }
-  footer strong { color: white; }
+  footer strong { color: var(--gold); letter-spacing: 1px; }
 
   /* SIDEBAR CARRITO */
   .overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+    position: fixed; inset: 0; background: rgba(0,0,0,0.7);
     opacity: 0; pointer-events: none; transition: 0.3s; z-index: 200;
   }
   .overlay.open { opacity: 1; pointer-events: all; }
 
   .cart-panel {
     position: fixed; top: 0; right: 0; height: 100%; width: 400px;
-    max-width: 90vw; background: white; z-index: 201;
+    max-width: 90vw; background: var(--black-soft); z-index: 201;
     transform: translateX(100%); transition: 0.3s;
     display: flex; flex-direction: column;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    border-left: 1px solid var(--gold-dark);
   }
   .cart-panel.open { transform: translateX(0); }
   .cart-header {
-    padding: 20px; border-bottom: 1px solid var(--border);
+    padding: 20px; border-bottom: 1px solid var(--black-border);
     display: flex; justify-content: space-between; align-items: center;
   }
-  .cart-header h2 { font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
-  .close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--muted); }
+  .cart-header h2 { font-size: 1.1rem; display: flex; align-items: center; gap: 8px; color: var(--gold); }
+  .close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
+  .close-btn:hover { color: var(--gold); }
 
   .cart-items { flex: 1; overflow-y: auto; padding: 15px; }
-  .empty { text-align: center; color: var(--muted); padding: 40px 20px; }
+  .empty { text-align: center; color: var(--text-muted); padding: 40px 20px; }
   .cart-item {
-    display: flex; gap: 12px; padding: 12px; border-bottom: 1px solid var(--border);
-    align-items: center;
+    display: flex; gap: 12px; padding: 12px;
+    border-bottom: 1px solid var(--black-border); align-items: center;
   }
   .cart-item img { width: 55px; height: 55px; border-radius: 10px; object-fit: cover; }
   .cart-item-info { flex: 1; }
-  .cart-item-info h4 { font-size: 0.9rem; margin-bottom: 4px; }
-  .cart-item-info p { font-size: 0.85rem; color: var(--muted); }
+  .cart-item-info h4 { font-size: 0.9rem; margin-bottom: 4px; color: var(--text); }
+  .cart-item-info p { font-size: 0.85rem; color: var(--gold-light); font-weight: 600; }
   .qty-controls { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
   .qty-btn {
-    width: 24px; height: 24px; border-radius: 6px; border: 1px solid var(--border);
-    background: white; cursor: pointer; font-weight: 700; color: var(--primary);
+    width: 24px; height: 24px; border-radius: 6px;
+    border: 1px solid var(--gold-dark); background: var(--black-card);
+    cursor: pointer; font-weight: 700; color: var(--gold);
   }
-  .qty-btn:hover { background: var(--primary); color: white; }
+  .qty-btn:hover { background: var(--gold); color: var(--black); }
   .remove-btn {
-    background: none; border: none; color: #ef4444; cursor: pointer;
+    background: none; border: none; color: var(--red); cursor: pointer;
     font-size: 0.8rem; font-weight: 600;
     display: flex; align-items: center; gap: 4px;
   }
+  .remove-btn:hover { color: #f87171; }
   .remove-btn svg { width: 12px; height: 12px; }
 
-  .cart-footer { padding: 20px; border-top: 1px solid var(--border); background: var(--bg); }
+  .cart-footer {
+    padding: 20px; border-top: 1px solid var(--black-border);
+    background: var(--black-card);
+  }
   .total-row {
     display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 15px; font-size: 1.1rem; font-weight: 700;
+    margin-bottom: 15px; font-size: 1.15rem; font-weight: 700;
   }
+  .total-row span:last-child { color: var(--gold-light); }
   .checkout-btn {
-    width: 100%; background: var(--accent); color: white;
-    border: none; padding: 14px; border-radius: 12px;
-    font-weight: 700; font-size: 1rem; cursor: pointer;
+    width: 100%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--black); border: none; padding: 14px; border-radius: 12px;
+    font-weight: 800; font-size: 0.95rem; cursor: pointer;
     display: flex; align-items: center; justify-content: center; gap: 8px;
-    transition: 0.2s;
+    transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px;
   }
-  .checkout-btn:hover { background: #16a34a; }
-  .checkout-btn:disabled { background: #cbd5e1; cursor: not-allowed; }
+  .checkout-btn:hover { box-shadow: 0 8px 24px rgba(212,175,55,0.4); }
+  .checkout-btn:disabled { background: #2a2a2a; color: #555; cursor: not-allowed; box-shadow: none; }
 
   @media (max-width: 768px) {
     .about, .contact-grid { grid-template-columns: 1fr; }
     nav { display: none; }
     .search-bar { display: none; }
-    .hero h1 { font-size: 1.6rem; }
-    .logo { font-size: 1.05rem; }
+    .hero h1 { font-size: 1.7rem; }
+    .header-logo img { height: 42px; }
     .cart-btn span.txt { display: none; }
     .info-banner { gap: 15px; font-size: 0.8rem; }
+    .mode-btn { padding: 8px 18px; font-size: 0.75rem; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">Mi<span>Tienda</span></div>
+  <div class="header-logo">
+    <img src="logo.png" alt="Richardo Brito">
+  </div>
   <nav>
     <a href="#productos">Productos</a>
     <a href="#nosotros">Nosotros</a>
@@ -317,11 +396,23 @@
 </header>
 
 <section class="hero">
-  <h1>Todo lo que necesitas, en un solo lugar</h1>
-  <p>Electrodomésticos · Ropa · Accesorios · Aseo · Juguetes y más</p>
+  <h1>RICHARDO BRITO</h1>
+  <p>Electrodomésticos · Ropa · Accesorios · Aseo · Juguetes</p>
+
+  <div class="mode-switcher">
+    <div class="mode-toggle">
+      <button class="mode-btn active" id="btnMinorista" onclick="cambiarModo('minorista')">
+        <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Minorista
+      </button>
+      <button class="mode-btn" id="btnMayorista" onclick="cambiarModo('mayorista')">
+        <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>
+        Mayorista
+      </button>
+    </div>
+  </div>
 </section>
 
-<!-- Banner de horario + estado abierto/cerrado -->
 <div class="info-banner">
   <div>
     <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -336,9 +427,8 @@
   <div class="grid" id="grid"></div>
 </div>
 
-<!-- SOBRE NOSOTROS -->
 <section class="section" id="nosotros">
-  <h2>Sobre <span>nosotros</span></h2>
+  <h2>Sobre Nosotros</h2>
   <p class="section-intro">
     Somos un negocio local comprometido con ofrecer productos de calidad
     a las familias de Sancti Spíritus y toda Cuba.
@@ -346,37 +436,31 @@
   <div class="about">
     <div class="about-text">
       <p>
-        En <strong>Mi Tienda</strong> nos dedicamos a la venta de electrodomésticos, ropa, accesorios,
+        En <strong>Richardo Brito</strong> nos dedicamos a la venta de electrodomésticos, ropa, accesorios,
         artículos de aseo, juguetes y mucho más. Nuestro objetivo es que cada cliente encuentre
         todo lo que necesita en un solo lugar, con la comodidad de hacer su pedido desde casa.
       </p>
       <p>
-        Trabajamos cada día para brindarte la mejor atención, productos confiables y un servicio
-        rápido a través de WhatsApp. Compra fácil, recibe rápido, y confía en nosotros.
+        Ofrecemos precios <strong>minoristas</strong> para el cliente individual y precios
+        <strong>mayoristas</strong> para revendedores y compras al por mayor. Cambia el modo
+        según tu necesidad desde el botón superior.
       </p>
       <ul>
         <li><span class="check"><svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Productos de calidad garantizada</li>
         <li><span class="check"><svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Atención personalizada por WhatsApp</li>
-        <li><span class="check"><svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Precios claros y accesibles</li>
+        <li><span class="check"><svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Precios minoristas y mayoristas</li>
         <li><span class="check"><svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Ubicados en el corazón del Boulevard</li>
       </ul>
     </div>
     <div class="about-img">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 9l1.5-6h15L21 9"/>
-        <path d="M3 9v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V9"/>
-        <path d="M3 9h18"/>
-        <path d="M8 13h8"/>
-        <path d="M8 17h5"/>
-      </svg>
+      <img src="logo.png" alt="Richardo Brito">
     </div>
   </div>
 </section>
 
-<!-- CONTACTO -->
-<section class="section" id="contacto" style="background: white; max-width: 100%; padding-left: 0; padding-right: 0;">
+<section class="section" id="contacto" style="background: var(--black-soft); max-width: 100%; padding-left: 0; padding-right: 0;">
   <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-    <h2>Contácta<span>nos</span></h2>
+    <h2>Contáctanos</h2>
     <p class="section-intro">
       Escríbenos por cualquiera de nuestros canales. Estamos disponibles de lunes a sábado
       de 8:30 AM a 5:00 PM.
@@ -384,20 +468,20 @@
 
     <div class="contact-grid">
       <div class="contact-cards">
-        <a class="contact-card wa" href="https://wa.me/5359371917" target="_blank">
+        <a class="contact-card wa" id="waContact" href="https://wa.me/5359371917" target="_blank">
           <div class="contact-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
             </svg>
           </div>
           <div>
-            <h4>WhatsApp</h4>
-            <p>+53 59371917</p>
+            <h4 id="waLabel">WhatsApp · Minorista</h4>
+            <p id="waNumber">+53 59371917</p>
             <small>Respuesta rápida en horario laboral</small>
           </div>
         </a>
 
-        <a class="contact-card" href="mailto:contacto@mitienda.com">
+        <a class="contact-card" href="mailto:contacto@richardobrito.com">
           <div class="contact-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="2" y="4" width="20" height="16" rx="2"/>
@@ -406,7 +490,7 @@
           </div>
           <div>
             <h4>Correo electrónico</h4>
-            <p>contacto@mitienda.com</p>
+            <p>contacto@richardobrito.com</p>
             <small>Consultas y pedidos especiales</small>
           </div>
         </a>
@@ -439,11 +523,10 @@
 </section>
 
 <footer>
-  <p><strong>Mi Tienda</strong> ·</p>
+  <p><strong>RICHARDO BRITO</strong> ·</p>
   <p style="margin-top:6px;">© 2025 Todos los derechos reservados</p>
 </footer>
 
-<!-- Overlay + Carrito -->
 <div class="overlay" id="overlay" onclick="toggleCart()"></div>
 <aside class="cart-panel" id="cartPanel">
   <div class="cart-header">
@@ -470,50 +553,100 @@
 
 <script>
 // ============================
-// CONFIGURACIÓN
+// CONFIGURACIÓN DE MODOS
 // ============================
-const WHATSAPP_NUMBER = "5359371917"; // Cuba + número
+const CONFIG = {
+  minorista: {
+    whatsapp: "5359371917",
+    etiqueta: "Minorista",
+    multiplicador: 1
+  },
+  mayorista: {
+    whatsapp: "5353203180",
+    etiqueta: "Mayorista",
+    multiplicador: 1 // aquí puedes aplicar un descuento, ej: 0.85
+  }
+};
+
+let modoActual = "minorista";
 const MONEDA = "USD $";
 
 // ============================
-// PRODUCTOS (genéricos)
+// PRODUCTOS (con precio minorista y mayorista)
 // ============================
 const productos = [
   // Electrodomésticos
-  { id: 1, nombre: "Refrigerador 2 puertas", precio: 450, cat: "Electrodomésticos", img: "https://picsum.photos/seed/fridge/400/300" },
-  { id: 2, nombre: "Microondas digital", precio: 120, cat: "Electrodomésticos", img: "https://picsum.photos/seed/micro/400/300" },
-  { id: 3, nombre: "Licuadora 5 velocidades", precio: 45, cat: "Electrodomésticos", img: "https://picsum.photos/seed/blender/400/300" },
-  { id: 4, nombre: "Ventilador de torre", precio: 60, cat: "Electrodomésticos", img: "https://picsum.photos/seed/fan/400/300" },
+  { id: 1, nombre: "Refrigerador 2 puertas", precioMinor: 450, precioMayor: 400, cat: "Electrodomésticos", img: "https://picsum.photos/seed/fridge/400/300" },
+  { id: 2, nombre: "Microondas digital", precioMinor: 120, precioMayor: 100, cat: "Electrodomésticos", img: "https://picsum.photos/seed/micro/400/300" },
+  { id: 3, nombre: "Licuadora 5 velocidades", precioMinor: 45, precioMayor: 38, cat: "Electrodomésticos", img: "https://picsum.photos/seed/blender/400/300" },
+  { id: 4, nombre: "Ventilador de torre", precioMinor: 60, precioMayor: 50, cat: "Electrodomésticos", img: "https://picsum.photos/seed/fan/400/300" },
 
   // Ropa
-  { id: 5, nombre: "Camiseta algodón premium", precio: 15, cat: "Ropa", img: "https://picsum.photos/seed/tshirt/400/300" },
-  { id: 6, nombre: "Jeans clásico azul", precio: 35, cat: "Ropa", img: "https://picsum.photos/seed/jeans/400/300" },
-  { id: 7, nombre: "Chaqueta deportiva", precio: 55, cat: "Ropa", img: "https://picsum.photos/seed/jacket/400/300" },
+  { id: 5, nombre: "Camiseta algodón premium", precioMinor: 15, precioMayor: 10, cat: "Ropa", img: "https://picsum.photos/seed/tshirt/400/300" },
+  { id: 6, nombre: "Jeans clásico azul", precioMinor: 35, precioMayor: 28, cat: "Ropa", img: "https://picsum.photos/seed/jeans/400/300" },
+  { id: 7, nombre: "Chaqueta deportiva", precioMinor: 55, precioMayor: 45, cat: "Ropa", img: "https://picsum.photos/seed/jacket/400/300" },
 
   // Accesorios
-  { id: 8, nombre: "Reloj deportivo", precio: 40, cat: "Accesorios", img: "https://picsum.photos/seed/watch/400/300" },
-  { id: 9, nombre: "Gafas de sol UV400", precio: 20, cat: "Accesorios", img: "https://picsum.photos/seed/sunglasses/400/300" },
-  { id: 10, nombre: "Mochila antirrobo", precio: 30, cat: "Accesorios", img: "https://picsum.photos/seed/backpack/400/300" },
+  { id: 8, nombre: "Reloj deportivo", precioMinor: 40, precioMayor: 32, cat: "Accesorios", img: "https://picsum.photos/seed/watch/400/300" },
+  { id: 9, nombre: "Gafas de sol UV400", precioMinor: 20, precioMayor: 15, cat: "Accesorios", img: "https://picsum.photos/seed/sunglasses/400/300" },
+  { id: 10, nombre: "Mochila antirrobo", precioMinor: 30, precioMayor: 24, cat: "Accesorios", img: "https://picsum.photos/seed/backpack/400/300" },
 
   // Aseo
-  { id: 11, nombre: "Kit higiene personal", precio: 12, cat: "Aseo", img: "https://picsum.photos/seed/hygiene/400/300" },
-  { id: 12, nombre: "Set de toallas x3", precio: 25, cat: "Aseo", img: "https://picsum.photos/seed/towels/400/300" },
+  { id: 11, nombre: "Kit higiene personal", precioMinor: 12, precioMayor: 9, cat: "Aseo", img: "https://picsum.photos/seed/hygiene/400/300" },
+  { id: 12, nombre: "Set de toallas x3", precioMinor: 25, precioMayor: 20, cat: "Aseo", img: "https://picsum.photos/seed/towels/400/300" },
 
   // Juguetes
-  { id: 13, nombre: "Set bloques didácticos", precio: 18, cat: "Juguetes", img: "https://picsum.photos/seed/blocks/400/300" },
-  { id: 14, nombre: "Carro a control remoto", precio: 35, cat: "Juguetes", img: "https://picsum.photos/seed/rccar/400/300" },
-  { id: 15, nombre: "Muñeca interactiva", precio: 28, cat: "Juguetes", img: "https://picsum.photos/seed/doll/400/300" },
+  { id: 13, nombre: "Set bloques didácticos", precioMinor: 18, precioMayor: 14, cat: "Juguetes", img: "https://picsum.photos/seed/blocks/400/300" },
+  { id: 14, nombre: "Carro a control remoto", precioMinor: 35, precioMayor: 28, cat: "Juguetes", img: "https://picsum.photos/seed/rccar/400/300" },
+  { id: 15, nombre: "Muñeca interactiva", precioMinor: 28, precioMayor: 22, cat: "Juguetes", img: "https://picsum.photos/seed/doll/400/300" },
 ];
 
 // ============================
 // ESTADO
 // ============================
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+let carrito = JSON.parse(localStorage.getItem("carrito_rb")) || [];
 let categoriaActual = "Todos";
 let busqueda = "";
 
+// Helper: precio según modo
+function precioDe(p) {
+  return modoActual === "mayorista" ? p.precioMayor : p.precioMinor;
+}
+
 // ============================
-// RENDER CATEGORÍAS
+// CAMBIO DE MODO
+// ============================
+function cambiarModo(modo) {
+  if (modo === modoActual) return;
+  modoActual = modo;
+  document.getElementById("btnMinorista").classList.toggle("active", modo === "minorista");
+  document.getElementById("btnMayorista").classList.toggle("active", modo === "mayorista");
+
+  // Actualizar contacto WhatsApp
+  document.getElementById("waContact").href = `https://wa.me/${CONFIG[modo].whatsapp}`;
+  document.getElementById("waLabel").textContent = `WhatsApp · ${CONFIG[modo].etiqueta}`;
+  document.getElementById("waNumber").textContent = modo === "mayorista" ? "+53 53203180" : "+53 59371917";
+
+  // Vaciar carrito al cambiar de modo (los precios cambian)
+  if (carrito.length > 0) {
+    if (confirm("Cambiar de modo vaciará el carrito actual. ¿Continuar?")) {
+      carrito = [];
+      guardar();
+      renderCarrito();
+    } else {
+      // revertir
+      modoActual = modo === "minorista" ? "mayorista" : "minorista";
+      document.getElementById("btnMinorista").classList.toggle("active", modoActual === "minorista");
+      document.getElementById("btnMayorista").classList.toggle("active", modoActual === "mayorista");
+      return;
+    }
+  }
+
+  renderProductos();
+}
+
+// ============================
+// CATEGORÍAS
 // ============================
 function renderCategorias() {
   const cats = ["Todos", ...new Set(productos.map(p => p.cat))];
@@ -530,7 +663,7 @@ function filtrarCat(cat) {
 }
 
 // ============================
-// RENDER PRODUCTOS
+// PRODUCTOS
 // ============================
 function renderProductos() {
   const grid = document.getElementById("grid");
@@ -541,7 +674,7 @@ function renderProductos() {
   });
 
   if (filtrados.length === 0) {
-    grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:var(--muted);padding:40px;">No se encontraron productos.</p>`;
+    grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:40px;">No se encontraron productos.</p>`;
     return;
   }
 
@@ -551,10 +684,10 @@ function renderProductos() {
       <div class="card-body">
         <div class="card-cat">${p.cat}</div>
         <div class="card-title">${p.nombre}</div>
-        <div class="card-price">${MONEDA}${p.precio.toFixed(2)}</div>
+        <div class="card-price">${MONEDA}${precioDe(p).toFixed(2)}</div>
         <button class="add-btn" onclick="agregarCarrito(${p.id}, this)">
           <svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Agregar al carrito
+          Agregar
         </button>
       </div>
     </div>
@@ -566,14 +699,25 @@ function renderProductos() {
 // ============================
 function agregarCarrito(id, btn) {
   const prod = productos.find(p => p.id === id);
-  const existe = carrito.find(i => i.id === id);
+  const precioActual = precioDe(prod);
+  const existe = carrito.find(i => i.id === id && i.modo === modoActual);
+
   if (existe) {
     existe.cantidad++;
   } else {
-    carrito.push({ ...prod, cantidad: 1 });
+    carrito.push({
+      id: prod.id,
+      nombre: prod.nombre,
+      cat: prod.cat,
+      img: prod.img,
+      precio: precioActual,
+      modo: modoActual,
+      cantidad: 1
+    });
   }
   guardar();
   renderCarrito();
+
   if (btn) {
     const htmlOriginal = btn.innerHTML;
     btn.innerHTML = `<svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Agregado`;
@@ -639,16 +783,19 @@ function renderCarrito() {
 }
 
 function guardar() {
-  localStorage.setItem("carrito", JSON.stringify(carrito));
+  localStorage.setItem("carrito_rb", JSON.stringify(carrito));
 }
 
 // ============================
-// ENVIAR POR WHATSAPP
+// WHATSAPP
 // ============================
 function sendWhatsApp() {
   if (carrito.length === 0) return;
 
-  let mensaje = "🛒 *NUEVO PEDIDO*\n\n";
+  const modoTexto = modoActual === "mayorista" ? "MAYORISTA" : "MINORISTA";
+  const numero = CONFIG[modoActual].whatsapp;
+
+  let mensaje = `🛒 *NUEVO PEDIDO · ${modoTexto}*\n\n`;
   let total = 0;
   carrito.forEach((i, idx) => {
     const subtotal = i.precio * i.cantidad;
@@ -657,7 +804,7 @@ function sendWhatsApp() {
   });
   mensaje += `━━━━━━━━━━━━━━━\n*TOTAL: ${MONEDA}${total.toFixed(2)}*\n\nGracias por su compra 🙌`;
 
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`;
+  const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
   window.open(url, "_blank");
 }
 
@@ -680,13 +827,9 @@ document.getElementById("search").addEventListener("input", e => {
 function actualizarEstado() {
   const badge = document.getElementById("statusBadge");
   if (!badge) return;
-
   const ahora = new Date();
   const dia = ahora.getDay();
-  const hora = ahora.getHours();
-  const minutos = ahora.getMinutes();
-  const horaDecimal = hora + minutos / 60;
-
+  const horaDecimal = ahora.getHours() + ahora.getMinutes() / 60;
   const esDiaLaboral = dia >= 1 && dia <= 6;
   const enHorario = horaDecimal >= 8.5 && horaDecimal < 17;
 
